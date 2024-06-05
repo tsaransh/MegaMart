@@ -60,4 +60,6 @@ public class InventoryServiceImpl implements InventoryService {
 
         return inventoryDetailList;
     }
+
+
 }

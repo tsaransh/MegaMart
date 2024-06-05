@@ -1,11 +1,12 @@
 package com.web.megamart.payload;
 
+import com.web.megamart.entity.helper.OrderStatus;
 import lombok.Data;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
-import java.util.List;
 
 @Data
 public class OrderDetails {
@@ -15,9 +16,10 @@ public class OrderDetails {
     private ProductResponse productResponse;
     private AuthenticatedUserDetails userDetails;
     private Date orderDate;
-    private Date deliveryDate;
+    private LocalDate deliveryDate;
     private String deliveryAddress;
-    private List<Map<String, Date>> orderStatus;
+    private Map<OrderStatus, LocalDate> orderStatus;
     private boolean completed;
+    private String orderTo;
 
 }

@@ -39,4 +39,6 @@ public interface UserService {
     String switchProfile(String userUid, String profileType);
 
     String getUserAccountType(String userUid);
+
+    void save(UserDetail userDetail);
 }

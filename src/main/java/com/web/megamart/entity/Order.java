@@ -23,13 +23,13 @@ public class Order {
     @Column(name = "id", nullable = false, updatable = false)
     private String orderId;
 
-    private int quantity; // Changed to int
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    private String orderBy; // Fixed typo
+    private String orderBy;
 
     @CreatedDate
     private Date orderDate;
@@ -46,5 +46,7 @@ public class Order {
     private Map<OrderStatus, Date> orderStatus;
 
     private boolean completed;
+
+    private String orderTo;
 
 }

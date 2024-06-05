@@ -1,8 +1,6 @@
 package com.web.megamart.services;
 
 import com.web.megamart.entity.Inventory;
-import com.web.megamart.payload.AddProductInventory;
-import com.web.megamart.payload.GetProductInventory;
 
 import java.util.List;
 
@@ -14,6 +12,5 @@ public interface InventoryService {
     public Inventory update(Inventory inventory);
 
     public List<Inventory> getAll();
-
 
 }

@@ -138,7 +138,7 @@ public class UserServiceImpl implements com.web.megamart.services.UserService {
         UserDetail userDetail = userRepository.findByEmailOrMobileNumber(emailOrMobileNumber, emailOrMobileNumber)
                 .orElseThrow(() -> new UserException("User not found with: " + emailOrMobileNumber, HttpStatus.NOT_FOUND));
 
-        if(isAccountVerified(userDetail)) {
+        if(!isAccountVerified(userDetail)) {
             reVerifyAccount(emailOrMobileNumber);
             throw new UserException("Your account is not verified, Please check your email", HttpStatus.BAD_REQUEST);
         }
@@ -199,8 +199,6 @@ public class UserServiceImpl implements com.web.megamart.services.UserService {
             throw new UserException("Failed to send email", HttpStatus.BAD_REQUEST);
         }
     }
-
-
 
     @Override
     public List<AuthenticatedUserDetails> fetchAllUsers(String emailOrMobileNumber) {
@@ -276,6 +274,11 @@ public class UserServiceImpl implements com.web.megamart.services.UserService {
     public String getUserAccountType(String userUid) {
         UserDetail userDetail = findByUserUid(userUid);
         return userDetail.getAccountType();
+    }
+
+    @Override
+    public void save(UserDetail userDetail) {
+        userRepository.save(userDetail);
     }
 
 }

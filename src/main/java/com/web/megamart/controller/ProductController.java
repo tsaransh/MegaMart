@@ -74,7 +74,6 @@ public class ProductController {
     public ResponseEntity<String> handleUserException(UserException ex) {
         return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
     }
-
     @ExceptionHandler(InventoryException.class)
     public ResponseEntity<String> handleInventoryException(InventoryException ex) {
         return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
