@@ -1,9 +1,10 @@
 package com.web.megamart.payload;
 
 import lombok.Data;
-import lombok.Getter;
+import lombok.ToString;
 
 @Data
+@ToString
 public class LoginCredentials {
 
     private String emailOrMobileNumber;

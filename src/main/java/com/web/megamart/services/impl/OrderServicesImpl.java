@@ -60,7 +60,7 @@ public class OrderServicesImpl implements OrderService {
             }
             order.setProduct(product);
             order.setDeliveryDate(LocalDate.now().plusDays(7));
-            order.setOrderStatus((Map<OrderStatus, Date>) new HashMap<>().put(OrderStatus.ORDER_RECEIVED, LocalDate.now()));
+            order.setOrderStatus((Map<OrderStatus, LocalDate>) new HashMap<>().put(OrderStatus.ORDER_RECEIVED, LocalDate.now()));
             Order savedOrder = orderRepository.save(order);
 
             int newQuantity = inventory.getStockQuantity() - placeOrder.getQuantity();
@@ -176,7 +176,7 @@ public class OrderServicesImpl implements OrderService {
         inventory.setStockQuantity(newQuantity);
         inventoryService.update(inventory);
 
-        order.setOrderStatus((Map<OrderStatus, Date>) new HashMap<>().put(OrderStatus.CANCELLED, LocalDate.now()));
+        order.setOrderStatus((Map<OrderStatus, LocalDate>) new HashMap<>().put(OrderStatus.CANCELLED, LocalDate.now()));
         orderRepository.save(order);
         return true;
     }
@@ -253,7 +253,7 @@ public class OrderServicesImpl implements OrderService {
         if(userDetail.getAccountType()== AccountType.SELLER.toString()) {
             throw new UserException("You don't have any right to change order status", HttpStatus.BAD_REQUEST);
         }
-        order.setOrderStatus((Map<OrderStatus, Date>) new HashMap<>().put(status, LocalDate.now()));
+        order.setOrderStatus((Map<OrderStatus, LocalDate>) new HashMap<>().put(status, LocalDate.now()));
         return mappedToOrderDetail(orderRepository.save(order));
     }
 

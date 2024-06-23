@@ -43,7 +43,7 @@ public class Order {
     @MapKeyColumn(name = "status")
     @Column(name = "status_date")
     @Enumerated(EnumType.STRING) // Assuming OrderStatus is an enum
-    private Map<OrderStatus, Date> orderStatus;
+    private Map<OrderStatus, LocalDate> orderStatus;
 
     private boolean completed;
 

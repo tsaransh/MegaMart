@@ -25,6 +25,7 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<String> authUser(@RequestBody LoginCredentials credentials) {
+        System.out.println(credentials.toString());
         String token = userService.authenticateUser(credentials);
         return ResponseEntity.ok(token);
     }
@@ -36,7 +37,7 @@ public class AuthController {
     }
 
     @GetMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestParam String emailOrMobileNumber) {
+    public ResponseEntity<String> forgotPassword(@RequestParam String emailOrMobileNumber) {
         boolean otpSend = userService.forgotPassword(emailOrMobileNumber);
         return otpSend
                 ? ResponseEntity.ok("OTP send")
@@ -60,10 +61,7 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public ResponseEntity<Boolean> changePassword(@RequestBody ChangePassword changePassword) {
-
-        boolean passwordChanged = userService.changePassword(changePassword);
-
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(userService.changePassword(changePassword));
     }
 
     @ExceptionHandler(UserException.class)
